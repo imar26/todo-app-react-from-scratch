@@ -28,7 +28,8 @@ class App extends Component {
 
     var newTodo = {
       id: Math.random(),
-      title: this.refs.todoItem.value
+      title: this.refs.todoItem.value,
+      checked: false
     }
     
     this.state.todoList.push(newTodo);
@@ -40,6 +41,28 @@ class App extends Component {
     });
 
     event.target.reset();
+  }
+
+  checkItem(id) {
+    for(var i=0; i<this.state.todoList.length; i++) {
+      if(this.state.todoList[i].id === id) {
+        this.state.todoList[i].checked = !this.state.todoList[i].checked;
+        
+        if(this.state.todoList[i].checked) {
+          this.setState({
+            todoList: this.state.todoList,
+            unchecked: this.state.unchecked - 1,
+          })
+        } else {
+          this.setState({
+            todoList: this.state.todoList,
+            unchecked: this.state.unchecked + 1,
+          })
+        }
+
+        break;
+      }
+    }    
   }
 
   render() {
@@ -57,7 +80,9 @@ class App extends Component {
         {
           this.state.todoList.map(todo => {
             return <li className={classNames.TODO_ITEM} key={todo.id}>
-              <p className={classNames.TODO_TEXT}>{todo.title}</p>
+              <input type="checkbox" ref="checkItem" className={classNames.TODO_CHECKBOX} onChange={() => this.checkItem(todo.id)} />
+              <span className={classNames.TODO_TEXT}>{todo.title}</span>
+              <button className={classNames.TODO_DELETE}>DELETE</button>
             </li>
           })
         }
@@ -67,6 +92,3 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
-
-// const itemCountSpan = document.getElementById('item-count')
-// const uncheckedCountSpan = document.getElementById('unchecked-count')
