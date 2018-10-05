@@ -40,6 +40,22 @@ ul {
     flex: none;
 }
 
+*:focus {
+    outline: 0;
+}
+
+.form-elements {
+    display: flex;
+    flex-direction: row;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.form-elements input {
+    padding: 7px 12px;
+}
+
 .button {
     padding: 10px 20px;
 }

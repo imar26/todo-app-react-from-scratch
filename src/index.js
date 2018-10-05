@@ -16,36 +16,49 @@ class App extends Component {
     super();
 
     this.state = {
-      todoList: []
+      todoList: [],
+      todoItem: '',
+      total: 0,
+      unchecked: 0
     }
   } 
 
-  newTodo() {
+  newTodo(event) {
+    event.preventDefault();
+
     var newTodo = {
       id: Math.random(),
-      title: 'This is my new todo item'
+      title: this.refs.todoItem.value
     }
     
     this.state.todoList.push(newTodo);
 
     this.setState({
-      todoList: this.state.todoList
+      todoList: this.state.todoList,
+      total: this.state.total + 1,
+      unchecked: this.state.unchecked + 1,
     });
+
+    event.target.reset();
   }
 
   render() {
     return <div className="container center">
       <h1 className="center title">My TODO App</h1>
       <div className="flow-right controls">
-        <span>Item count: <span id="item-count">0</span></span>
-        <span>Unchecked count: <span id="unchecked-count">0</span></span>
+        <span>Item count: <span id="item-count">{this.state.total}</span></span>
+        <span>Unchecked count: <span id="unchecked-count">{this.state.unchecked}</span></span>
       </div>
-      <input type="text" ref="todoItem" placeholder="Enter Todo Item" required />
-      <button className="button center" onClick={() => this.newTodo()}>New TODO</button>
+      <form className="form-elements" onSubmit={this.newTodo.bind(this)}>
+        <input type="text" ref="todoItem" placeholder="Enter Todo Item" required />
+        <input type="submit" value="New TODO" className="button center" />
+      </form>
       <ul id="todo-list" className="todo-list">
         {
           this.state.todoList.map(todo => {
-            return <li className={classNames.TODO_ITEM} key={todo.id}><p className={classNames.TODO_TEXT}>{todo.title}</p></li>
+            return <li className={classNames.TODO_ITEM} key={todo.id}>
+              <p className={classNames.TODO_TEXT}>{todo.title}</p>
+            </li>
           })
         }
       </ul>
