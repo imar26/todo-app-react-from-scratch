@@ -65,6 +65,47 @@ class App extends Component {
     }    
   }
 
+  removeTodo(id) {
+    for(var i=0; i<this.state.todoList.length; i++) {
+      if(this.state.todoList[i].id === id) {
+        if(this.state.todoList[i].checked) {
+          this.setState({
+            todoList: this.state.todoList,
+            total: this.state.total - 1
+          })
+        } else {
+          this.setState({
+            todoList: this.state.todoList,
+            total: this.state.total - 1,
+            unchecked: this.state.unchecked - 1
+          })
+        }              
+        
+        this.state.todoList.splice(i, 1);     
+
+        break;
+      }
+    }
+  }
+
+  renderTodoItems() {
+    var items;
+    
+    if(this.state.todoList.length > 0) {
+      items = this.state.todoList.map(todo => {
+        return <li className={classNames.TODO_ITEM} key={todo.id}>
+          <input type="checkbox" ref="checkItem" className={classNames.TODO_CHECKBOX} onChange={() => this.checkItem(todo.id)} />
+          <span className={classNames.TODO_TEXT}>{todo.title}</span>
+          <button className={classNames.TODO_DELETE} onClick={() => this.removeTodo(todo.id)}>DELETE</button>
+        </li>
+      });
+    } else {
+      items = <p className="align-center">No todo items found.</p>
+    }
+
+    return items;
+  }
+
   render() {
     return <div className="container center">
       <h1 className="center title">My TODO App</h1>
@@ -78,13 +119,7 @@ class App extends Component {
       </form>
       <ul id="todo-list" className="todo-list">
         {
-          this.state.todoList.map(todo => {
-            return <li className={classNames.TODO_ITEM} key={todo.id}>
-              <input type="checkbox" ref="checkItem" className={classNames.TODO_CHECKBOX} onChange={() => this.checkItem(todo.id)} />
-              <span className={classNames.TODO_TEXT}>{todo.title}</span>
-              <button className={classNames.TODO_DELETE}>DELETE</button>
-            </li>
-          })
+          this.renderTodoItems()
         }
       </ul>
     </div>
