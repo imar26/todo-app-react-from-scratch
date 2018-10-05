@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 // Import Styles
 import './style.css';
 
+// Constant Variables
 const classNames = {
   TODO_ITEM: 'todo-container',
   TODO_CHECKBOX: 'todo-checkbox',
@@ -14,7 +15,7 @@ const classNames = {
 class App extends Component {
   constructor() {
     super();
-
+    // Defined State
     this.state = {
       todoList: [],
       todoItem: '',
@@ -22,7 +23,7 @@ class App extends Component {
       unchecked: 0
     }
   } 
-
+  // Function to add new todo item
   newTodo(event) {
     event.preventDefault();
 
@@ -42,7 +43,7 @@ class App extends Component {
 
     event.target.reset();
   }
-
+  // Function to update checked items count
   checkItem(id) {
     for(var i=0; i<this.state.todoList.length; i++) {
       if(this.state.todoList[i].id === id) {
@@ -64,7 +65,7 @@ class App extends Component {
       }
     }    
   }
-
+  // Function to remove todo item
   removeTodo(id) {
     for(var i=0; i<this.state.todoList.length; i++) {
       if(this.state.todoList[i].id === id) {
@@ -87,7 +88,7 @@ class App extends Component {
       }
     }
   }
-
+  // Function to display list of todo items 
   renderTodoItems() {
     var items;
     

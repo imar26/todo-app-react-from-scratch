@@ -1,21 +1,44 @@
-# Assessment
+# TODO App using React JS
 
-The goal of this project is to use ReactJS capabilities and its paradigms by creating a TODO app. This app should be able to add TODOs and track the number of total TODOs as well as the number of unchecked TODOs.
+A simple TODO app built using React JS from scratch.
 
-This exercise must be completed within a week. The fully functional code must be uploaded to github. The work must be yours, no other person should be directly or indirectly involved.  After you complete the work please provide us the git hub link where we can download and assess the work.
+## Overview of the Application
 
-## Instructions
-Inside of [index.html](/index.html), you'll find some starter HTML. You shouldn't need to edit this file at all. Open this file on your computer into any browser to run the project. Make sure that [script.js](/script.js) and [styles.css](/styles.css)
-are in the same local directory. With the file open in your browser, you should see a `New TODO` button, which `alert`s when clicked. Your goal will be to get this button to create new TODOs.
+This web application allows the users to add Todo Items to the Todo List. This app also gives the users an additional functionality to mark the todo items as checked and to delete the todo items as well.
 
-Inside [styles.css](/styles.css), you'll find some pre-written CSS for your convenience. You shouldn't need to edit this file at all, but feel free to if desired.
+## Steps to Setup and Run the Application
 
-[script.js](/script.js) is where most of your work will be done. There is some starter code for you in the file. The `classNames` variable can be used to link any elements you create in js with the associated CSS class names. The next 3 lines of code are the HTML elements that you'll need to update when creating new
-TODOs. Lastly, you'll see the `addTodo()` function. This gets executed when creating a new TODO. You should replace the `alert()` call with logic to create new TODOs.
-Reminder: The above work needs to be done using ReactJS
+### Installation and Running
+1. You need to have **node.js** and **npm** installed on your machine. Once installed, you can check the versions using the below commands
 
+```sh
+node -v
+npm -v
+```
+Links for reference:
+* [install node.js](https://nodejs.org/en/download/)
 
-Good luck!
+2. Clone the project from GitHub Repository and Install all the necessary packages
 
-## Challenge! (Not Required)
-If you finish early and are up for a challenge, try adding delete functionality. This should be in the form of a button within each TODO that removes that TODO when clicked.
+```sh
+git clone https://github.com/imar26/todo-app-react-from-scratch.git
+cd todo-app-react-from-scratch
+npm install
+```
+
+3. Run the react application
+
+```sh
+npm start
+```
+
+4. Open your browser and go to [http://localhost:8080/](http://localhost:8080/)
+
+## Technologies Used
+
+* React JS
+* Webpack
+* Babel
+* HTML5
+* CSS3
+* npm
